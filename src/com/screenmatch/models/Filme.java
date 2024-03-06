@@ -1,4 +1,4 @@
-package com.alura.screenmatch.modelos;
+package br.com.alura.screenmatch.modelos;
 
 import br.com.alura.screenmatch.calculos.Classificavel;
 
