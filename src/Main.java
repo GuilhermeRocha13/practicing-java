@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import com.screenmatch.calculos.*;
 import com.screenmatch.models.*;
 
@@ -15,9 +16,7 @@ public class Main {
         meuFilme.avalia(10);
         System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
-        //meuFilme.somaDasAvaliacoes = 10;
-        //meuFilme.totalDeAvaliacoes = 1;
-        //System.out.println(meuFilme.pegaMedia());
+
 
         Serie lost = new Serie();
         lost.setNome("Lost");
@@ -47,6 +46,9 @@ public class Main {
         episodio.setSerie(lost);
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
-    }
+
+         ArrayList<Filme> listaDeFilmes = new ArrayList();
+         listaDeFilmes.add(outroFilme);
+     }
 }
 
