@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch.modelos;
+package com.screenmatch.models;
 
 public class Titulo {
     private String nome;
