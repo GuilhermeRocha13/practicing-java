@@ -1,6 +1,11 @@
 package com.screenmatch.models;
 
 public class Titulo {
+
+    public Titulo(String nome, int anoDeLancamento){
+        this.nome = nome;
+        this.anoDeLancamento = anoDeLancamento;
+    }
     private String nome;
     private int anoDeLancamento;
     private boolean incluidoNoPlano;
