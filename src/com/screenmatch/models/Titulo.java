@@ -1,6 +1,6 @@
 package com.screenmatch.models;
 
-public class Titulo {
+public class Titulo implements Comparable<Titulo> {
 
     public Titulo(String nome, int anoDeLancamento){
         this.nome = nome;
@@ -61,5 +61,10 @@ public class Titulo {
 
     public double pegaMedia(){
         return somaDasAvaliacoes / totalDeAvaliacoes;
+    }
+
+    @Override
+    public int compareTo(Titulo o) {
+        return 0;
     }
 }
