@@ -1,2 +1,4 @@
-package com.screenmatch.models;public class TitleOMDB {
+package com.screenmatch.models;
+
+public record TitleOMDB(String title, String year, String runtime) {
 }

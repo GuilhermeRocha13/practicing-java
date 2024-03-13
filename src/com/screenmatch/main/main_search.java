@@ -1,5 +1,9 @@
 package com.screenmatch.main;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+import com.screenmatch.models.TitleOMDB;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -23,5 +27,12 @@ public class main_search {
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
+
+        String json = response.body();
+
+        Gson gson = new Gson();
+        TitleOMDB myTitleODMB = gson.fromJson(json, TitleOMDB.class);
+
+
     }
 }
