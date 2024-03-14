@@ -6,6 +6,12 @@ public class Titulo implements Comparable<Titulo> {
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
     }
+
+    public Titulo(TitleOMDB mytitleomdb){
+        this.nome = mytitleomdb.title();
+        this.anoDeLancamento = Integer.valueOf(mytitleomdb.year());
+        this.duracaoEmMinutos = Integer.valueOf(mytitleomdb.runtime().substring(0, 2));
+    }
     private String nome;
     private int anoDeLancamento;
     private boolean incluidoNoPlano;
