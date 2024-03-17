@@ -36,8 +36,9 @@ public class main_search {
                 create();
 
         TitleOMDB myTitleODMB = gson.fromJson(json, TitleOMDB.class);
+
         System.out.println(myTitleODMB);
 
-        Titulo mytitle = new Titulo(TitleOMDB);
+        //Titulo mytitle = new Titulo(TitleOMDB);
     }
 }
