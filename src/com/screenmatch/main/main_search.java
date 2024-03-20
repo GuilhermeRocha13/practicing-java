@@ -5,7 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.screenmatch.models.TitleOMDB;
 import com.screenmatch.models.Titulo;
+import com.screenmatch.exception.numberLenght;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -39,8 +41,16 @@ public class main_search {
 
         //System.out.println(myTitleODMB);
 
-        Titulo mytitle = new Titulo(myTitleODMB);
+        try {
+            Titulo mytitle = new Titulo(myTitleODMB);
 
-        System.out.println(mytitle);
+            FileWriter writer = new FileWriter("file.txt");
+//            System.out.println(mytitle);
+        } catch (numberLenght e) {
+            System.out.println("bad " + e.getMessage());
+        }
+        finally {
+            System.out.println("over");
+        }
     }
 }

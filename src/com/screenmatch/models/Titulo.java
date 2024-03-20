@@ -1,5 +1,7 @@
 package com.screenmatch.models;
 
+import com.screenmatch.exception.numberLenght;
+
 public class Titulo implements Comparable<Titulo> {
 
     public Titulo(String nome, int anoDeLancamento){
@@ -8,6 +10,11 @@ public class Titulo implements Comparable<Titulo> {
     }
 
     public Titulo(TitleOMDB myTitleomdb){
+
+        if(myTitleomdb.year().length() > 4){
+
+            throw new numberLenght("can't convert");
+        }
         this.nome = myTitleomdb.title();
         this.anoDeLancamento = Integer.valueOf(myTitleomdb.year());
         this.duracaoEmMinutos = Integer.valueOf(myTitleomdb.runtime().substring(0, 2));
@@ -68,6 +75,8 @@ public class Titulo implements Comparable<Titulo> {
     public double pegaMedia(){
         return somaDasAvaliacoes / totalDeAvaliacoes;
     }
+
+
 
     @Override
     public int compareTo(Titulo o) {
