@@ -23,6 +23,7 @@ public class main_search {
 
         var addr = "https://www.omdbapi.com/?t=" + search + "&apikey=9e27a9fb";
 
+        try{
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(addr))
@@ -41,13 +42,15 @@ public class main_search {
 
         //System.out.println(myTitleODMB);
 
-        try {
+
             Titulo mytitle = new Titulo(myTitleODMB);
 
             FileWriter writer = new FileWriter("file.txt");
+            writer.write(mytitle.toString());
+            writer.close();
 //            System.out.println(mytitle);
         } catch (numberLenght e) {
-            System.out.println("bad " + e.getMessage());
+            System.out.println("bad, " + e.getMessage());
         }
         finally {
             System.out.println("over");
