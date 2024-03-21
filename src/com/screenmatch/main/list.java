@@ -1,7 +1,7 @@
 package com.screenmatch.main;
 
 import com.screenmatch.models.Filme;
-import com.screenmatch.models.Titulo;
+import com.screenmatch.models.Title;
 import com.screenmatch.models.Serie;
 
 import java.util.ArrayList;
@@ -18,12 +18,12 @@ public class list {
         Serie lost = new Serie("Lost", 2000);
 
 
-        ArrayList<Titulo> lista = new ArrayList<>();
+        ArrayList<Title> lista = new ArrayList<>();
         lista.add(filmeDoPaulo);
         lista.add(meuFilme);
         lista.add(outroFilme);
         lista.add(lost);
-        for (Titulo item : lista) {
+        for (Title item : lista) {
             System.out.println(item.getNome());
             if (item instanceof Filme filme && filme.getClassificacao() > 2) {
                 System.out.println("Classificação " + filme.getClassificacao());

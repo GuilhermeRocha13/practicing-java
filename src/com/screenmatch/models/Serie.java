@@ -1,6 +1,6 @@
 package com.screenmatch.models;
 
-public class Serie extends Titulo {
+public class Serie extends Title {
 
     public Serie(String nome, int anoDeLancamento){
         super(nome, anoDeLancamento);

@@ -2,7 +2,7 @@ package com.screenmatch.models;
 
 import com.screenmatch.calculos.Classificavel;
 
-public class Filme extends Titulo implements Classificavel {
+public class Filme extends Title implements Classificavel {
 
     public Filme(String nome, int anoDeLancamento){
         super(nome, anoDeLancamento);

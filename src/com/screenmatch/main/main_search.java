@@ -4,7 +4,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.screenmatch.models.TitleOMDB;
-import com.screenmatch.models.Titulo;
+import com.screenmatch.models.Title;
 import com.screenmatch.exception.numberLenght;
 
 import java.io.FileWriter;
@@ -13,47 +13,64 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class main_search {
     public static void main (String[] args) throws IOException, InterruptedException {
 
         Scanner reader = new Scanner(System.in);
-        var search = reader.nextLine();
+        String search = "";
+        List<Title> titles = new ArrayList<>();
 
-        var addr = "https://www.omdbapi.com/?t=" + search + "&apikey=9e27a9fb";
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setPrettyPrinting()
+                .create();
 
-        try{
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(addr))
-                .build();
+        while (!search.equalsIgnoreCase("exit")) {
 
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
-        //System.out.println(response.body());
-        String json = response.body();
+            search = reader.nextLine();
 
-        Gson gson = new GsonBuilder().
-                setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).
-                create();
+            if(search.equalsIgnoreCase("exit")){
+                break;
+            }
 
-        TitleOMDB myTitleODMB = gson.fromJson(json, TitleOMDB.class);
+            String endereco = "https://www.omdbapi.com/?t=" + search.replace(" ", "+") + "&apikey=9e27a9fb";
+            System.out.println(endereco);
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(endereco))
+                        .build();
+                HttpResponse<String> response = client
+                        .send(request, HttpResponse.BodyHandlers.ofString());
 
-        //System.out.println(myTitleODMB);
+                String json = response.body();
 
+                TitleOMDB myTitleOMD = gson.fromJson(json, TitleOMDB.class);
 
-            Titulo mytitle = new Titulo(myTitleODMB);
+                Title mytitle = new Title(myTitleOMD);
+                System.out.println(mytitle);
 
-            FileWriter writer = new FileWriter("file.txt");
-            writer.write(mytitle.toString());
-            writer.close();
-//            System.out.println(mytitle);
-        } catch (numberLenght e) {
-            System.out.println("bad, " + e.getMessage());
+                titles.add(mytitle);
+            } catch (NumberFormatException e) {
+                System.out.println("error: ");
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println("addr error");
+            } catch (numberLenght e) {
+                System.out.println(e.getMessage());
+            }
+
         }
-        finally {
-            System.out.println("over");
-        }
+        System.out.println(titles);
+        titles.get(0).avalia(10);
+        FileWriter writer = new FileWriter("movies.json");
+        writer.write(gson.toJson(titles));
+        writer.close();
+        System.out.println("over");
+
     }
 }

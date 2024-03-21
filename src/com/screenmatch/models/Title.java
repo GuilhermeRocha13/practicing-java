@@ -2,14 +2,14 @@ package com.screenmatch.models;
 
 import com.screenmatch.exception.numberLenght;
 
-public class Titulo implements Comparable<Titulo> {
+public class Title implements Comparable<Title> {
 
-    public Titulo(String nome, int anoDeLancamento){
+    public Title(String nome, int anoDeLancamento){
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
     }
 
-    public Titulo(TitleOMDB myTitleomdb){
+    public Title(TitleOMDB myTitleomdb){
 
         if(myTitleomdb.year().length() > 4){
 
@@ -79,7 +79,7 @@ public class Titulo implements Comparable<Titulo> {
 
 
     @Override
-    public int compareTo(Titulo o) {
+    public int compareTo(Title o) {
         return this.getNome().compareTo(o.getNome());
     }
 
