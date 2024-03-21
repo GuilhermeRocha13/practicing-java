@@ -37,12 +37,12 @@ public class main_search {
                 break;
             }
 
-            String endereco = "https://www.omdbapi.com/?t=" + search.replace(" ", "+") + "&apikey=9e27a9fb";
-            System.out.println(endereco);
+            String addr = "https://www.omdbapi.com/?t=" + search.replace(" ", "+") + "&apikey=9e27a9fb";
+            System.out.println(addr);
             try {
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create(endereco))
+                        .uri(URI.create(addr))
                         .build();
                 HttpResponse<String> response = client
                         .send(request, HttpResponse.BodyHandlers.ofString());
